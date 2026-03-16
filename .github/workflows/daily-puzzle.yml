@@ -51,10 +51,12 @@ jobs:
           # Read caption content for email body (use delimiter for multiline)
           echo "caption_text<<CAPTION_EOF" >> $GITHUB_OUTPUT
           cat "$CAPTION" >> $GITHUB_OUTPUT
+          echo "" >> $GITHUB_OUTPUT
           echo "CAPTION_EOF" >> $GITHUB_OUTPUT
           # Read solution content
           echo "solution_text<<SOLUTION_EOF" >> $GITHUB_OUTPUT
           cat "$SOLUTION" >> $GITHUB_OUTPUT
+          echo "" >> $GITHUB_OUTPUT
           echo "SOLUTION_EOF" >> $GITHUB_OUTPUT
 
       - name: Email daily puzzle
