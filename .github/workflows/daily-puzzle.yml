@@ -1,0 +1,39 @@
+name: Daily Chess Puzzle
+
+on:
+  schedule:
+    - cron: '30 8 * * *'  # Daily at 8:30 AM UTC
+  workflow_dispatch: {}    # Manual trigger from GitHub UI
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install system dependencies
+        run: sudo apt-get update && sudo apt-get install -y libcairo2-dev pkg-config
+
+      - name: Install Python dependencies
+        run: pip install python-chess cairosvg Pillow
+
+      - name: Generate daily puzzle
+        run: python generate.py
+
+      - name: Commit and push
+        run: |
+          git config user.name "Chess Puzzle Bot"
+          git config user.email "bot@chesspuzzle.local"
+          git add output/ used_puzzles.json
+          git diff --cached --quiet || git commit -m "Daily puzzle: $(date +%Y-%m-%d)"
+          git push
