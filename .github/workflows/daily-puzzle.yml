@@ -37,3 +37,53 @@ jobs:
           git add output/ used_puzzles.json
           git diff --cached --quiet || git commit -m "Daily puzzle: $(date +%Y-%m-%d)"
           git push
+
+      - name: Find latest puzzle files
+        id: puzzle_files
+        run: |
+          IMAGE=$(ls -t output/puzzle_*.png | head -1)
+          CAPTION=$(ls -t output/puzzle_*_caption.txt | head -1)
+          SOLUTION=$(ls -t output/puzzle_*_solution.txt | head -1)
+          echo "image=$IMAGE" >> $GITHUB_OUTPUT
+          echo "caption=$CAPTION" >> $GITHUB_OUTPUT
+          echo "solution=$SOLUTION" >> $GITHUB_OUTPUT
+          echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT
+          # Read caption content for email body (use delimiter for multiline)
+          echo "caption_text<<CAPTION_EOF" >> $GITHUB_OUTPUT
+          cat "$CAPTION" >> $GITHUB_OUTPUT
+          echo "CAPTION_EOF" >> $GITHUB_OUTPUT
+          # Read solution content
+          echo "solution_text<<SOLUTION_EOF" >> $GITHUB_OUTPUT
+          cat "$SOLUTION" >> $GITHUB_OUTPUT
+          echo "SOLUTION_EOF" >> $GITHUB_OUTPUT
+
+      - name: Email daily puzzle
+        if: ${{ vars.EMAIL_ENABLED == 'true' }}
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.GMAIL_USERNAME }}
+          password: ${{ secrets.GMAIL_APP_PASSWORD }}
+          subject: "Chess Puzzle - ${{ steps.puzzle_files.outputs.date }}"
+          to: ${{ secrets.GMAIL_USERNAME }}
+          from: DailyMateIn1 <${{ secrets.GMAIL_USERNAME }}>
+          body: |
+            Your daily Mate in 1 puzzle is ready!
+
+            Download the attached image and post it to Instagram with the caption below.
+
+            ═══════════════════════════════
+            CAPTION (copy-paste to Instagram):
+            ═══════════════════════════════
+
+            ${{ steps.puzzle_files.outputs.caption_text }}
+
+            ═══════════════════════════════
+            SOLUTION (pin as comment):
+            ═══════════════════════════════
+
+            ${{ steps.puzzle_files.outputs.solution_text }}
+          html_body: false
+          attachments: ${{ steps.puzzle_files.outputs.image }}
