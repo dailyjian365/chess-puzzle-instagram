@@ -87,5 +87,4 @@ jobs:
             ═══════════════════════════════
 
             ${{ steps.puzzle_files.outputs.solution_text }}
-          html_body: false
           attachments: ${{ steps.puzzle_files.outputs.image }}
