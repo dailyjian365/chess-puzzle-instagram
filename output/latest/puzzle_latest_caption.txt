@@ -1,6 +1,6 @@
-MATE IN 1 — Beginner Puzzle
+MATE IN 1 — Intermediate Puzzle
 
-White to move. Can you spot the checkmate?
+Black to move. Can you spot the checkmate?
 
 Quick puzzle — try to solve in under 30 seconds!
 
@@ -11,7 +11,7 @@ Solution will be pinned in the comments!
 .
 .
 
-#chess #thinkingcap #strategy #chessgame #chesschallenge #puzzle #chessplayer #chesscommunity #chessisfun #brainteaser #chesslife
-#chessboard #chesspuzzle #matein1 #logic #chesstactics #chessmaster #dailypuzzle #checkmate #learnchess #chesslover #chessnotcheckers
+#chessboard #chesschallenge #chessisfun #checkmate #chesslover #chessmoves #braingame #dailypuzzle #chessplayer #chesspuzzle #chess
+#strategy #brainteaser #chessnotcheckers #puzzle #chesslife #thinkingcap #chesscommunity #matein1 #learnchess #chesstactics #chessproblem
 
 Puzzle from lichess.org (CC0) | @dailymatein1
