@@ -1,4 +1,4 @@
-MATE IN 1 — Intermediate Puzzle
+MATE IN 1 — Advanced Puzzle
 
 White to move. Can you spot the checkmate?
 
@@ -11,7 +11,7 @@ Solution will be pinned in the comments!
 .
 .
 
-#chessgame #chessplayer #chesslover #matein1 #logic #chesscommunity #chessmoves #thinkingcap #chessboard #chesstactics #chessisfun
-#chesslife #dailypuzzle #chessnotcheckers #chessmaster #braingame #learnchess #strategy #chess #chessproblem #checkmate #chesspuzzle
+#chesstactics #matein1 #chess #braingame #chessisfun #thinkingcap #logic #chessmoves #strategy #chessgame #chessboard
+#dailypuzzle #puzzle #chessproblem #learnchess #chessplayer #chessnotcheckers #chesslover #brainteaser #chesspuzzle #chessmaster #checkmate
 
 Puzzle from lichess.org (CC0) | @dailymatein1
